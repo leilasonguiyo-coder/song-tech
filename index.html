@@ -18,11 +18,26 @@
                             accent: '#F59E0B',
                             light: '#F8FAFC'
                         }
+                    },
+                    animation: {
+                        'marquee': 'marquee 25s linear infinite',
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        }
                     }
                 }
             }
         }
     </script>
+    <style>
+        .marquee-container {
+            display: flex;
+            width: 200%;
+        }
+    </style>
 </head>
 <body class="bg-brand-light text-slate-800 font-sans">
 
@@ -158,43 +173,104 @@
         </div>
     </section>
 
-    <!-- Section Réalisations -->
-    <section id="realisations" class="py-20 bg-white">
+    <!-- Section Réalisations (Bannière & Carrousel Animé) -->
+    <section id="realisations" class="py-20 bg-white overflow-hidden">
         <div class="container mx-auto px-4">
-            <div class="text-center max-w-3xl mx-auto mb-16">
+            <div class="text-center max-w-3xl mx-auto mb-12">
                 <h2 class="text-3xl font-black text-brand-blue uppercase tracking-wide">Nos Réalisations sur le Terrain</h2>
-                <p class="text-slate-500 mt-2">Aperçu concret de notre savoir-faire technique à Bangui.</p>
+                <p class="text-slate-500 mt-2">Découvrez en images nos chantiers et installations à Bangui.</p>
                 <div class="h-1 w-20 bg-brand-accent mx-auto mt-3 rounded"></div>
             </div>
 
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Photo 1 (image_1.png) -->
-                <div class="group relative overflow-hidden rounded-xl shadow-lg bg-slate-100 h-80">
-                    <img src="image_1.png" alt="Chantier de pose de panneaux solaires par SONG-TECH" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-brand-blue via-transparent to-transparent opacity-90 flex items-end p-6">
-                        <div>
-                            <span class="text-brand-accent text-xs font-bold uppercase tracking-wider">Solaire</span>
-                            <h4 class="text-white font-bold text-lg">Installation Photovoltaïque en Toiture</h4>
+            <!-- Carrousel Principal Animé -->
+            <div class="relative max-w-4xl mx-auto overflow-hidden rounded-2xl shadow-2xl border-4 border-slate-100 bg-slate-900 group">
+                <!-- Slides Container -->
+                <div id="carousel-slides" class="flex transition-transform duration-700 ease-in-out">
+                    <!-- Slide 1 -->
+                    <div class="min-w-full relative h-[420px]">
+                        <img src="image_1.png" alt="Chantier Solaire SONG-TECH" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-blue via-transparent to-transparent opacity-90 flex items-end p-8">
+                            <div>
+                                <span class="bg-brand-accent text-brand-blue text-xs font-black uppercase px-3 py-1 rounded-full mb-2 inline-block">Projet Solaire</span>
+                                <h4 class="text-white font-bold text-2xl">Installation Photovoltaïque en Toiture</h4>
+                                <p class="text-slate-300 text-sm mt-1">Pose et raccordement de panneaux solaires haute performance à Bangui.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="min-w-full relative h-[420px]">
+                        <img src="image_2.png" alt="Stockage et Batteries SONG-TECH" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-blue via-transparent to-transparent opacity-90 flex items-end p-8">
+                            <div>
+                                <span class="bg-brand-accent text-brand-blue text-xs font-black uppercase px-3 py-1 rounded-full mb-2 inline-block">Stockage Énergie</span>
+                                <h4 class="text-white font-bold text-2xl">Mise en Service d'Onduleurs et Batteries</h4>
+                                <p class="text-slate-300 text-sm mt-1">Système d'autonomie électrique et secours automatique anti-coupure.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="min-w-full relative h-[420px]">
+                        <img src="image_3.png" alt="Équipe technique SONG-TECH" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-blue via-transparent to-transparent opacity-90 flex items-end p-8">
+                            <div>
+                                <span class="bg-brand-accent text-brand-blue text-xs font-black uppercase px-3 py-1 rounded-full mb-2 inline-block">Équipe Terrain</span>
+                                <h4 class="text-white font-bold text-2xl">Suivi Technique & Qualité d'Exécution</h4>
+                                <p class="text-slate-300 text-sm mt-1">Supervision rigoureuse de nos techniciens qualifiés sur le chantier.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- Photo 2 (image_2.png) -->
-                <div class="group relative overflow-hidden rounded-xl shadow-lg bg-slate-100 h-80">
-                    <img src="image_2.png" alt="Installation de batteries solaires par SONG-TECH" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-brand-blue via-transparent to-transparent opacity-90 flex items-end p-6">
-                        <div>
-                            <span class="text-brand-accent text-xs font-bold uppercase tracking-wider">Solaire / Stockage</span>
-                            <h4 class="text-white font-bold text-lg">Mise en service d'Onduleurs et Batteries</h4>
-                        </div>
-                    </div>
+
+                <!-- Boutons de Navigation Carrousel -->
+                <button id="prevBtn" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-brand-accent hover:text-brand-blue text-white p-3 rounded-full transition shadow-lg">
+                    <i class="fa-solid fa-chevron-left text-xl"></i>
+                </button>
+                <button id="nextBtn" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-brand-accent hover:text-brand-blue text-white p-3 rounded-full transition shadow-lg">
+                    <i class="fa-solid fa-chevron-right text-xl"></i>
+                </button>
+
+                <!-- Indicateurs / Points -->
+                <div class="absolute bottom-4 right-6 flex space-x-2 z-10" id="carousel-dots">
+                    <button class="w-3 h-3 rounded-full bg-brand-accent transition-all duration-300"></button>
+                    <button class="w-3 h-3 rounded-full bg-white/50 transition-all duration-300"></button>
+                    <button class="w-3 h-3 rounded-full bg-white/50 transition-all duration-300"></button>
                 </div>
-                <!-- Photo 3 (image_3.png) -->
-                <div class="group relative overflow-hidden rounded-xl shadow-lg bg-slate-100 h-80">
-                    <img src="image_3.png" alt="L'équipe technique de SONG-TECH sur un chantier à Bangui" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-brand-blue via-transparent to-transparent opacity-90 flex items-end p-6">
-                        <div>
-                            <span class="text-brand-accent text-xs font-bold uppercase tracking-wider">Équipe terrain</span>
-                            <h4 class="text-white font-bold text-lg">Suivi technique et Qualité SONG-TECH</h4>
+            </div>
+
+            <!-- Bannière Défilante Continue (Marquee Loop) -->
+            <div class="mt-16">
+                <h3 class="text-center font-bold text-slate-400 text-sm uppercase tracking-widest mb-6">Aperçu rapide de nos chantiers</h3>
+                <div class="relative overflow-hidden w-full bg-slate-900 py-6 rounded-2xl shadow-inner border border-slate-800">
+                    <div class="marquee-container animate-marquee flex space-x-6">
+                        <!-- Bloc 1 de visuels -->
+                        <div class="flex space-x-6 shrink-0">
+                            <div class="w-64 h-40 rounded-xl overflow-hidden border-2 border-brand-accent/30 shadow-md shrink-0">
+                                <img src="image_1.png" alt="Réalisation Solaire" class="w-full h-full object-cover">
+                            </div>
+                            <div class="w-64 h-40 rounded-xl overflow-hidden border-2 border-brand-accent/30 shadow-md shrink-0">
+                                <img src="image_2.png" alt="Réalisation Onduleurs" class="w-full h-full object-cover">
+                            </div>
+                            <div class="w-64 h-40 rounded-xl overflow-hidden border-2 border-brand-accent/30 shadow-md shrink-0">
+                                <img src="image_3.png" alt="Réalisation Équipe" class="w-full h-full object-cover">
+                            </div>
+                            <div class="w-64 h-40 rounded-xl overflow-hidden border-2 border-brand-accent/30 shadow-md shrink-0">
+                                <img src="image_4.png" alt="PDG SONG-TECH" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <!-- Duplication du Bloc pour la boucle infinie -->
+                        <div class="flex space-x-6 shrink-0">
+                            <div class="w-64 h-40 rounded-xl overflow-hidden border-2 border-brand-accent/30 shadow-md shrink-0">
+                                <img src="image_1.png" alt="Réalisation Solaire" class="w-full h-full object-cover">
+                            </div>
+                            <div class="w-64 h-40 rounded-xl overflow-hidden border-2 border-brand-accent/30 shadow-md shrink-0">
+                                <img src="image_2.png" alt="Réalisation Onduleurs" class="w-full h-full object-cover">
+                            </div>
+                            <div class="w-64 h-40 rounded-xl overflow-hidden border-2 border-brand-accent/30 shadow-md shrink-0">
+                                <img src="image_3.png" alt="Réalisation Équipe" class="w-full h-full object-cover">
+                            </div>
+                            <div class="w-64 h-40 rounded-xl overflow-hidden border-2 border-brand-accent/30 shadow-md shrink-0">
+                                <img src="image_4.png" alt="PDG SONG-TECH" class="w-full h-full object-cover">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -212,7 +288,8 @@
                 <div class="h-1 w-20 bg-brand-accent mx-auto mt-4 rounded"></div>
             </div>
 
-            <form action="https://formsubmit.co/karlsonguiyo@gmail.com" method="POST" class="bg-white text-slate-800 p-8 rounded-2xl shadow-2xl space-y-6">
+            <!-- Formulaire mis à jour avec la bonne adresse mail (karlsonguyo@gmail.com) -->
+            <form action="https://formsubmit.co/karlsonguyo@gmail.com" method="POST" class="bg-white text-slate-800 p-8 rounded-2xl shadow-2xl space-y-6">
                 <input type="hidden" name="_subject" value="Nouveau Devis Client - SONG-TECH">
                 <input type="hidden" name="_next" value="https://song-tech.netlify.app">
                 <input type="hidden" name="_captcha" value="false">
@@ -282,7 +359,8 @@
                     </li>
                     <li class="flex items-center space-x-3">
                         <i class="fa-solid fa-envelope text-brand-accent"></i>
-                        <a href="mailto:karlsonguiyo@gmail.com" class="hover:text-white transition">karlsonguiyo@gmail.com</a>
+                        <!-- Lien e-mail mis à jour -->
+                        <a href="mailto:karlsonguyo@gmail.com" class="hover:text-white transition">karlsonguyo@gmail.com</a>
                     </li>
                 </ul>
             </div>
@@ -301,5 +379,48 @@
         </div>
     </footer>
 
+    <!-- Script JavaScript pour l'animation du carrousel -->
+    <script>
+        const slides = document.getElementById('carousel-slides');
+        const dots = document.querySelectorAll('#carousel-dots button');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentIndex = 0;
+        const totalSlides = 3;
+
+        function updateCarousel(index) {
+            currentIndex = index;
+            slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+            dots.forEach((dot, idx) => {
+                if (idx === currentIndex) {
+                    dot.classList.remove('bg-white/50');
+                    dot.classList.add('bg-brand-accent', 'w-6');
+                } else {
+                    dot.classList.remove('bg-brand-accent', 'w-6');
+                    dot.classList.add('bg-white/50');
+                }
+            });
+        }
+
+        nextBtn.addEventListener('click', () => {
+            const nextIndex = (currentIndex + 1) % totalSlides;
+            updateCarousel(nextIndex);
+        });
+
+        prevBtn.addEventListener('click', () => {
+            const prevIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            updateCarousel(prevIndex);
+        });
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => updateCarousel(index));
+        });
+
+        // Défilement automatique toutes les 4 secondes
+        setInterval(() => {
+            const nextIndex = (currentIndex + 1) % totalSlides;
+            updateCarousel(nextIndex);
+        }, 4000);
+    </script>
 </body>
 </html>
